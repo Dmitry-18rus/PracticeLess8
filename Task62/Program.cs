@@ -17,32 +17,26 @@ PrintArray(array);
 
 void FillArray (int m, int n)
 {
-    int sum = 0;
-    for (int i = 0; i<array.GetLength(0);i++)
-        for (int j = 0; j<array.GetLength(1);j++)
+    int sum = 1;
+    int i = 0; 
+    int j = 0;
+    while (sum <=m*n)
+    {
+    array[i,j] = sum;
         {
-            if (i==0)
-            {
-                sum = sum+1; 
-                array[i,j] = sum;
-            break;
-            }
-            while (j==(array.GetLength(1)-1))
-            {
-                array[i,j]= sum; 
-                sum = array[i,j]+1;
-                
-            break;
-            }
-            while (i==array.GetLength(0)-1)
-            {
-                // sum=7
-                sum = sum-j;
-                array[i,j]=sum+n-1;
-            break;
-            }
+            if (i <= j + 1 && i + j < n - 1)
+                j++;
+            else if (i < j && i + j >= n - 1)
+                i++;
+            else if (i >= j && i + j > n - 1)
+                j--;
+            else
+                i--;
+            sum++;
         }
+    }
 }
+
 void PrintArray (int [,] array)
 {
     Console.WriteLine();
